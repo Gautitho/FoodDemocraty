@@ -1,0 +1,40 @@
+services:
+    discord:
+        build:
+            context: .
+            dockerfile: ./docker/discord/Dockerfile
+        image: discord
+        depends_on:
+            - base
+            - backend
+
+    backend:
+        build:
+            context: .
+            dockerfile: ./docker/backend/Dockerfile
+        image: backend
+        ports:
+            - "8000:8000"
+        depends_on:
+            - base
+            - backend_db
+
+    backend_db:
+        image: postgres:13
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_USER: backend_db_admin
+            POSTGRES_PASSWORD: '0000'
+            POSTGRES_DB: backend_db
+        volumes:
+            - backend_db_volume:/var/lib/postgresql/data
+
+    base:
+        build:
+            context: .
+            dockerfile: ./docker/base/Dockerfile
+        image: base
+
+volumes:
+    backend_db_volume:
