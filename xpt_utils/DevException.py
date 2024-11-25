@@ -1,0 +1,2 @@
+class DevException(Exception):
+  pass
