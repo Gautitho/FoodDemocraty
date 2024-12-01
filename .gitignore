@@ -3,3 +3,4 @@ __pycache__/
 backend/staticfiles/
 backend/django.conf
 DiscordBot/discord.conf
+DiscordBot/food_democracy.conf

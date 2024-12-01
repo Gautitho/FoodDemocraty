@@ -66,9 +66,16 @@ sudo ./deploy.sh 0 1 0 0 0
 Avant de démarrer le serveur, il faut créer un fichier **discord.conf** dans le dossier **DiscordBot** de la forme suivante :  
 ```
 discord_token               = "ce token est faux"
-FoodDemocraty_channel_id    = 0
-FoodDemocraty_role_id       = 0
-FoodDemocraty_api_base_url  = "http://127.0.0.1:8000/FoodDemocracy"
+admin_channel_id            = 0
+```
+
+#### Créer les fichiers de configuration des modules de DiscordBot
+**FoodDemocracy :**
+```
+channel_id      = 1305493938425167903
+role_id         = 1312724232945270885
+api_base_url    = "http://127.0.0.1:8000/FoodDemocracy"
+emoji_list      = ["\U0001F92E", "\U0001F922", "\U0001F610", "\U0001F924", "\U0001F60D"]
 ```
 
 #### Execution
