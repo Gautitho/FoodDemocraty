@@ -274,7 +274,7 @@ class FoodDemocracyCog(discord.ext.commands.Cog):
 
             s = self.counting_sentence_list[datetime.datetime.now().day%len(self.counting_sentence_list)]
             for selected_choice in selected_choice_list:
-                s += f"- {selected_choice['name']} [{selected_choice['id']}] avec une moyenne de {selected_choice['mean']}\n"
+                s += f"- {selected_choice['name']} [{selected_choice['id']}] avec un score de {selected_choice['score']}\n"
             s = s[:-1]
 
             await self.voting_channel.send(embed=du.format_msg(s, title="FoodDemocracy : Dépouillement", color="GREEN"))
