@@ -1,12 +1,14 @@
 # syntax=docker/dockerfile:1
-FROM ubuntu:22.04
+FROM arm32v7/ubuntu:22.04
 
 # Remove interactivity from apt commands
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt update
+RUN apt update --fix-missing
 
 # Installing linux utilities
+RUN apt install build-essential -y
+RUN apt install g++ -y
 RUN apt install sudo -y
 RUN apt install systemctl -y
 RUN apt install lsb-release -y
@@ -19,7 +21,9 @@ RUN ln -s /usr/bin/python3 /usr/bin/python
 
 # Installing utilities
 RUN apt install postgresql postgresql-contrib -y
+COPY docker/base/pg_hba.conf /etc/postgresql/14/main/pg_hba.conf
 RUN apt install libpq-dev -y
+RUN service postgresql restart
 
 # Define timezone
 RUN apt install tzdata -y

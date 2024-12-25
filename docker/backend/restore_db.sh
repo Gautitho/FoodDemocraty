@@ -14,5 +14,5 @@ docker compose down -v
 docker compose up -d ${DOCKER_DB_CONTAINER}
 sleep 3
 docker cp -L ${BACKUP_FILE} $(docker compose ps -q ${DOCKER_DB_CONTAINER}):/tmp/backup.sql
-sleep 3
+sleep 10
 docker compose exec ${DOCKER_DB_CONTAINER} bash -c "PGPASSWORD='${DB_PASSWORD}' psql -U ${DB_USER} -d ${DB_NAME} < /tmp/backup.sql"
